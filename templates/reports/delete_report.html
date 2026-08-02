@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Report</title>
+</head>
+<body>
+
+<h2>Delete Report</h2>
+
+<p>
+
+Are you sure you want to delete
+
+<b>{{ report.report_name }}</b> ?
+
+</p>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<button type="submit">
+
+Yes Delete
+
+</button>
+
+</form>
+
+<br>
+
+<a href="{% url 'report_list' %}">
+
+Cancel
+
+</a>
+
+</body>
+</html>
