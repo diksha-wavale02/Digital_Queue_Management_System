@@ -1,8 +1,10 @@
 from django.contrib import admin
 from .models import Report
 
+
 @admin.register(Report)
 class ReportAdmin(admin.ModelAdmin):
+
     list_display = (
         'report_name',
         'report_type',
@@ -13,5 +15,17 @@ class ReportAdmin(admin.ModelAdmin):
         'generated_date',
     )
 
-    search_fields = ('report_name',)
-    list_filter = ('report_type', 'generated_date')
+    list_filter = (
+        'report_type',
+        'generated_date',
+    )
+
+    search_fields = (
+        'report_name',
+    )
+
+    ordering = (
+        '-generated_date',
+    )
+
+    list_per_page = 10
