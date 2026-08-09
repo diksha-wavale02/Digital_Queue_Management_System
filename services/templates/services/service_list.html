@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<link rel="stylesheet"
+href="{% static 'services/css/style.css' %}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Service Management</h1>
+
+<a href="{% url 'add_service' %}" class="btn">
+Add Service
+</a>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Service Name</th>
+
+<th>Department</th>
+
+<th>Duration</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+{% for service in services %}
+
+<tr>
+
+<td>{{ service.id }}</td>
+
+<td>{{ service.service_name }}</td>
+
+<td>{{ service.department }}</td>
+<td>{{ service.average_time }} Min</td>
+
+<td>{{ service.status }}</td>
+
+<td>
+
+<a href="{% url 'edit_service' service.id %}">
+Edit
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>

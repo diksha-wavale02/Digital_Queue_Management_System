@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Staff</title>
+
+    <link rel="stylesheet"
+          href="{% static 'staff/style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Add New Staff</h2>
+
+        <form method="POST"
+              action="{% url 'add_staff' %}">
+
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="error-box">
+                    <strong>Please fix the following errors:</strong>
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label>Full Name</label>
+                {{ form.full_name }}
+            </div>
+
+            <div class="form-group">
+                <label>Employee ID</label>
+                {{ form.employee_id }}
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+                {{ form.department }}
+            </div>
+
+            <div class="form-group">
+                <label>Service</label>
+                {{ form.service }}
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                {{ form.phone }}
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                {{ form.email }}
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                {{ form.status }}
+            </div>
+
+            <button type="submit" class="save-btn">
+                Save Staff
+            </button>
+
+        </form>
+
+        <a href="{% url 'staff_list' %}"
+           class="back-btn">
+            ← Back to Staff List
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

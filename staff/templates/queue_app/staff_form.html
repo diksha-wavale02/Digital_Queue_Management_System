@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Staff</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  body{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: "Segoe UI", Arial, sans-serif;
+    padding: 40px;
+    min-height: 100vh;
+  }
+  .container{
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  h2{
+    color: #1D4ED8;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 24px;
+  }
+  .form-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .form-group{
+    display: flex;
+    flex-direction: column;
+  }
+  label{
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  input, select{
+    padding: 12px;
+    border: 2px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+  }
+  input:focus, select:focus{
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+  }
+  .btn-group{
+    grid-column: span 2;
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .btn{
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-save{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+  }
+  .btn-cancel{
+    background: #F3F4F6;
+    color: #374151;
+    text-decoration: none;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2><i class="fa-solid fa-user-plus"></i> Add New Staff</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-grid">
+      
+      <div class="form-group">
+        <label><i class="fa-solid fa-user"></i> Full Name</label>
+        <input type="text" name="full_name" placeholder="Enter full name" required>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-id-card"></i> Employee ID</label>
+        <input type="text" name="employee_id" placeholder="EMP001" required>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-building"></i> Department</label>
+        <input type="text" name="department" placeholder="Billing, Support" required>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-briefcase"></i> Service</label>
+        <input type="text" name="service" placeholder="Payment, Query" required>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-envelope"></i> Email</label>
+        <input type="email" name="email" placeholder="email@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-phone"></i> Phone</label>
+        <input type="text" name="phone" placeholder="9876543210" required>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-circle-dot"></i> Status</label>
+        <select name="status">
+          <option value="Available">🟢 Available</option>
+          <option value="Busy">🟡 Busy</option>
+          <option value="Offline">🔴 Offline</option>
+        </select>
+      </div>
+
+      <div class="btn-group">
+        <button type="submit" class="btn btn-save"><i class="fa-solid fa-save"></i> Save Staff</button>
+        <a href="{% url 'staff_list' %}" class="btn btn-cancel"><i class="fa-solid fa-xmark"></i> Cancel</a>
+      </div>
+
+    </div>
+  </form>
+</div>
+</body>
+</html>

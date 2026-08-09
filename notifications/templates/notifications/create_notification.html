@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Notification</title>
+
+    <link rel="stylesheet"
+          href="{% static 'notifications/css/notifications.css' %}">
+</head>
+
+<body>
+
+<div class="form-box">
+
+    <h2>Create Notification</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Notification Title"
+            required
+        >
+
+        <textarea
+            name="message"
+            placeholder="Message"
+            rows="5"
+            required
+        ></textarea>
+
+        <select name="notification_type">
+
+            <option value="Token">Token</option>
+            <option value="Queue">Queue</option>
+            <option value="System">System</option>
+
+        </select>
+
+        <button type="submit">
+            Send Notification
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

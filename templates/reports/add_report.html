@@ -6,7 +6,8 @@
 <body>
 
 <h2>Add New Report</h2>
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'reports/style.css' %}">
 <form method="POST">
     {% csrf_token %}
 

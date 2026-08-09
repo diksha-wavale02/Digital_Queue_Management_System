@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Queue Status</title>
+    <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+<h2>Live Queue Status</h2>
+
+<table>
+
+<tr>
+<th>Counter</th>
+<th>Current Token</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Counter 1</td>
+<td>A102</td>
+<td>Serving</td>
+</tr>
+
+<tr>
+<td>Counter 2</td>
+<td>A105</td>
+<td>Waiting</td>
+</tr>
+
+<tr>
+<td>Counter 3</td>
+<td>A108</td>
+<td>Serving</td>
+</tr>
+
+</table>
+
+<h3>Upcoming Tokens</h3>
+
+<table>
+
+<tr>
+
+<th>Token</th>
+
+<th>Estimated Time</th>
+
+</tr>
+
+<tr>
+
+<td>A106</td>
+
+<td>15 Minutes</td>
+
+</tr>
+
+<tr>
+
+<td>A107</td>
+
+<td>18 Minutes</td>
+
+</tr>
+
+<tr>
+
+<td>A108</td>
+
+<td>22 Minutes</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<tbody>
+    {% for member in staff %}
+    <tr>
+        <td>{{ member.id }}</td>
+        <td>{{ member.name }}</td>
+        <td>{{ member.email }}</td>
+        <td>{{ member.phone }}</td>
+        <td>{{ member.department }}</td>
+        <td>{{ member.status }}</td>
+
+        <td>
+            <a href="{% url 'update_staff' member.id %}">
+                Edit
+            </a>
+
+            <form method="POST"
+                  action="{% url 'delete_staff' member.id %}"
+                  style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">
+                    Delete
+                </button>
+            </form>
+        </td>
+    </tr>
+
+    {% empty %}
+    <tr>
+        <td colspan="7">
+            No staff records found.
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>

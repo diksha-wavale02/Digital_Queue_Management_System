@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Token History</title>
+
+    <link rel="stylesheet" href="{% static 'css/token.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="history-container">
+
+    <div class="history-header">
+
+        <h1>🎫 Token History</h1>
+
+        <a href="{% url 'dashboard' %}" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </div>
+
+    <div class="search-box">
+
+        <input type="text" placeholder="Search Token Number">
+
+        <button>Search</button>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>Token No</th>
+
+            <th>Service</th>
+
+            <th>Date</th>
+
+            <th>Time</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for token in tokens %}
+
+        <tr>
+
+            <td>#{{ token.token_number }}</td>
+
+            <td>{{ token.service }}</td>
+
+            <td>{{ token.date }}</td>
+
+            <td>{{ token.time }}</td>
+
+            <td>
+
+                {% if token.status == "Completed" %}
+                    <span class="completed">{{ token.status }}</span>
+
+                {% elif token.status == "Waiting" %}
+                    <span class="waiting">{{ token.status }}</span>
+
+                {% elif token.status == "Processing" %}
+                    <span class="processing">{{ token.status }}</span>
+
+                {% else %}
+                    <span class="cancelled">{{ token.status }}</span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="5">
+
+                No Token History Available
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

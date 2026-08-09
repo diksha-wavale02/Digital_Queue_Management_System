@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Staff Management</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  body{background:#F5F7FB;font-family:"Segoe UI",Arial,sans-serif;padding:25px;}
+  .container{max-width:1000px;margin:auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .btn{background:#1D4ED8;color:#fff;padding:10px 18px;border:none;border-radius:8px;text-decoration:none;font-weight:600;}
+  .btn-danger{background:#DC2626;}
+  table{width:100%;border-collapse:collapse;}
+  th{padding:12px;text-align:left;background:#F9FAFB;color:#6B7280;}
+  td{padding:12px;border-bottom:1px solid #F3F4F6;}
+  .badge{padding:5px 10px;border-radius:20px;font-size:12px;font-weight:500;}
+  .badge.green{background:#D1FAE5;color:#065F46;}
+  .badge.red{background:#FEE2E2;color:#991B1B;}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2><i class="fa-solid fa-users"></i> Staff Management</h2>
+    <a href="{% url 'staff_add' %}" class="btn"><i class="fa-solid fa-plus"></i> Add Staff</a>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <p style="background:#D1FAE5;padding:10px;border-radius:8px;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Employee ID</th>
+        <th>Department</th>
+        <th>Service</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in staff_list %}
+      <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.full_name }}</td>
+        <td>{{ s.employee_id }}</td>
+        <td>{{ s.department }}</td>
+        <td>{{ s.service }}</td>
+        <td>
+          {% if s.status == 'Available' %}
+            <span class="badge green">{{ s.status }}</span>
+          {% elif s.status == 'Busy' %}
+            <span class="badge orange">{{ s.status }}</span>
+          {% else %}
+            <span class="badge red">{{ s.status }}</span>
+          {% endif %}
+        </td>
+        <td>
+          <a href="{% url 'staff_edit' s.id %}" style="color:#1D4ED8;">Edit</a> | 
+          <a href="{% url 'staff_delete' s.id %}" style="color:#DC2626;">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="7" style="text-align:center;">No Staff Found</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

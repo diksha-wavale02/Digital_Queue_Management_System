@@ -1,0 +1,41 @@
+<div class="card shadow">
+
+<div class="card-header">
+
+Recent Notifications
+
+</div>
+
+<table class="table">
+
+<tr>
+
+<th>Title</th>
+
+<th>Status</th>
+
+</tr>
+
+{% for n in recent_notifications %}
+
+<tr>
+
+<td>{{ n.title }}</td>
+
+<td>{{ n.status }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="2">No Notifications</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>

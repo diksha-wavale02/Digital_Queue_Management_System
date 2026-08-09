@@ -1,0 +1,171 @@
+.notification-box {
+
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+
+    border: 1px solid #e5e5e5;
+}
+
+
+
+.notification-header {
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+
+
+.notification-header h2 {
+
+    font-size:24px;
+    color:#333;
+}
+
+
+
+/* Blue Button */
+
+.mark-btn {
+
+    background:#1976d2;
+    color:white;
+
+    border:none;
+    padding:10px 20px;
+
+    border-radius:8px;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+
+
+.mark-btn:hover {
+
+    background:#0d47a1;
+}
+
+
+
+/* Notification Card */
+
+.notification-card {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    background:#f8f9fa;
+
+    border-radius:12px;
+
+    border-left:5px solid #1976d2;
+
+    transition:0.3s;
+
+}
+
+
+
+.notification-card:hover {
+
+    box-shadow:0 5px 12px rgba(0,0,0,0.1);
+
+    transform:translateY(-3px);
+}
+
+
+
+.notification-card.unread {
+
+    background:#eaf3ff;
+
+}
+
+
+
+/* Icons */
+
+.notification-icon {
+
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    background:#1976d2;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+}
+
+
+
+.notification-icon.success {
+
+    background:#28a745;
+
+}
+
+
+
+.notification-icon.warning {
+
+    background:#ff9800;
+
+}
+
+
+
+.notification-content h4 {
+
+    margin:0;
+
+    color:#333;
+
+}
+
+
+
+.notification-content p {
+
+    margin:6px 0;
+
+    color:#555;
+
+}
+
+
+
+.notification-content span {
+
+    color:#888;
+
+    font-size:13px;
+
+}

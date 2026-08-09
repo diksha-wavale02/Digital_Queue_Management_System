@@ -1,0 +1,416 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Queue Management | DQMS</title>
+
+    <link rel="stylesheet"
+          href="{% static 'queue_app/css/queue.css' %}">
+
+</head>
+
+<body>
+
+<div class="page">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+
+            <h1>Queue Management</h1>
+
+            <p>
+                Manage and monitor the current customer queue
+            </p>
+
+        </div>
+
+
+        <div class="header-buttons">
+
+            <a href="/dashboard/" class="back-btn">
+                ← Dashboard
+            </a>
+
+            <button class="generate-btn">
+                + Generate Token
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="icon blue">
+                #
+            </div>
+
+            <div>
+
+                <p>Current Token</p>
+
+                <h2>A002</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon orange">
+                ◷
+            </div>
+
+            <div>
+
+                <p>Waiting</p>
+
+                <h2>8</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon green">
+                ✓
+            </div>
+
+            <div>
+
+                <p>Completed</p>
+
+                <h2>15</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon red">
+                !
+            </div>
+
+            <div>
+
+                <p>Cancelled</p>
+
+                <h2>2</h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- QUEUE BOX -->
+
+    <div class="queue-box">
+
+
+        <div class="box-header">
+
+            <div>
+
+                <h2>Today's Queue</h2>
+
+                <p>
+                    Manage tokens and customer status
+                </p>
+
+            </div>
+
+
+            <select>
+
+                <option>All Services</option>
+
+                <option>Banking Service</option>
+
+                <option>Account Service</option>
+
+                <option>Loan Service</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Token</th>
+
+                        <th>Customer</th>
+
+                        <th>Service</th>
+
+                        <th>Time</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+                            <b>#A001</b>
+                        </td>
+
+                        <td>
+                            Customer 1
+                        </td>
+
+                        <td>
+                            Banking Service
+                        </td>
+
+                        <td>
+                            10:20 AM
+                        </td>
+
+                        <td>
+
+                            <span class="status completed">
+                                Completed
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="view-btn">
+                                View
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <b>#A002</b>
+                        </td>
+
+                        <td>
+                            Customer 2
+                        </td>
+
+                        <td>
+                            Account Service
+                        </td>
+
+                        <td>
+                            10:30 AM
+                        </td>
+
+                        <td>
+
+                            <span class="status processing">
+                                Processing
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="call-btn">
+                                Complete
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <b>#A003</b>
+                        </td>
+
+                        <td>
+                            Customer 3
+                        </td>
+
+                        <td>
+                            Loan Service
+                        </td>
+
+                        <td>
+                            10:40 AM
+                        </td>
+
+                        <td>
+
+                            <span class="status waiting">
+                                Waiting
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="call-btn">
+                                Call
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <b>#A004</b>
+                        </td>
+
+                        <td>
+                            Customer 4
+                        </td>
+
+                        <td>
+                            Banking Service
+                        </td>
+
+                        <td>
+                            10:45 AM
+                        </td>
+
+                        <td>
+
+                            <span class="status waiting">
+                                Waiting
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="call-btn">
+                                Call
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- BOTTOM SECTION -->
+
+    <div class="bottom-grid">
+
+
+        <div class="info-box">
+
+            <h2>Next Token</h2>
+
+            <div class="next-token">
+                #A003
+            </div>
+
+            <p>
+                Next customer in queue
+            </p>
+
+            <button class="next-btn">
+                Call Next Token
+            </button>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <h2>Queue Information</h2>
+
+            <div class="info-row">
+
+                <span>Average Waiting Time</span>
+
+                <strong>12 min</strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>Average Service Time</span>
+
+                <strong>8 min</strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>People In Queue</span>
+
+                <strong>8</strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

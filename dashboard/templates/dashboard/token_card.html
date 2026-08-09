@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Token Card</title>
+    <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card token-card">
+
+        <h2>Token Generated Successfully</h2>
+
+        <h1 class="token-number">A105</h1>
+
+        <p>General Service</p>
+
+        <hr>
+
+        <div class="details">
+            <p><b>Queue Position:</b> 3</p>
+            <p><b>Estimated Time:</b> 12 Minutes</p>
+        </div>
+
+        <img src="{% static 'images/qr.png' %}" width="200">
+
+        <br><br>
+
+        <button class="btn">Download QR</button>
+
+        <button class="btn">Back Home</button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

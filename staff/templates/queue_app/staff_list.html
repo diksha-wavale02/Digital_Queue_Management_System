@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DQMS - Staff Management</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif;}
+  body{background:#F5F7FB;display:flex;color:#333;}
+  .sidebar{width:260px;background:#1D4ED8;height:100vh;position:fixed;display:flex;flex-direction:column;color:#fff;}
+  .sidebar .logo{display:flex;align-items:center;gap:12px;padding:20px;}
+  .sidebar nav{flex:1;padding:10px;}
+  .sidebar nav a{display:flex;align-items:center;gap:12px;padding:12px 16px;margin:4px 0;border-radius:8px;color:#fff;text-decoration:none;font-size:14px;}
+  .sidebar nav a.active{background:#fff;color:#1D4ED8;font-weight:600;}
+  .main{margin-left:260px;width:100%;}
+  .header{background:#fff;padding:15px 25px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,0.05);}
+  .content{padding:25px;}
+  .page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .btn-add{background:#1D4ED8;color:#fff;padding:10px 18px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:8px;}
+  .card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);overflow:hidden;}
+  table{width:100%;border-collapse:collapse;}
+  thead{background:#1D4ED8;color:#fff;}
+  thead th{padding:14px;text-align:left;font-size:13px;}
+  tbody td{padding:14px;border-bottom:1px solid #eee;font-size:14px;}
+  .user{display:flex;align-items:center;gap:10px;}
+  .user .avatar{width:32px;height:32px;background:#DBEAFE;color:#1D4ED8;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .badge{padding:5px 10px;border-radius:20px;font-size:12px;font-weight:500;}
+  .badge.green{background:#D1FAE5;color:#065F46;}
+  .badge.red{background:#FEE2E2;color:#991B1B;}
+  .actions{display:flex;gap:8px;justify-content:center;}
+  .btn{padding:6px 10px;border-radius:6px;border:1px solid;font-size:12px;cursor:pointer;text-decoration:none;}
+  .btn-edit{border-color:#1D4ED8;color:#1D4ED8;} .btn-delete{border-color:#EF4444;color:#EF4444;}
+</style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo"><h2>DQMS</h2></div>
+    <nav>
+      <a href="{% url 'dashboard' %}"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+      <a href="{% url 'staff_list' %}" class="active"><i class="fa-solid fa-users"></i> Staff Management</a>
+    </nav>
+  </div>
+
+  <div class="main">
+    <div class="header"><h2>Staff Management</h2></div>
+    <div class="content">
+      <div class="page-header">
+        <h1>Staff Management</h1>
+        <a href="{% url 'staff_add' %}" class="btn-add"><i class="fa-solid fa-plus"></i> Add Staff</a>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Name</th><th>Employee ID</th><th>Department</th>
+              <th>Service</th><th>Email</th><th>Phone</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for staff in staff_list %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td><div class="user"><div class="avatar"><i class="fa-solid fa-user"></i></div> {{ staff.full_name }}</div></td>
+              <td>{{ staff.employee_id }}</td>
+              <td>{{ staff.department }}</td>
+              <td>{{ staff.service }}</td>
+              <td>{{ staff.email }}</td>
+              <td>{{ staff.phone }}</td>
+              <td><span class="badge {% if staff.status == 'Active' %}green{% else %}red{% endif %}">{{ staff.status }}</span></td>
+              <td>
+                <div class="actions">
+                  <a href="{% url 'staff_edit' staff.id %}" class="btn btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                  <a href="{% url 'staff_delete' staff.id %}" class="btn btn-delete" onclick="return confirm('Delete?')"><i class="fa-solid fa-trash"></i> Delete</a>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="9" style="text-align:center;">No Staff Found</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
