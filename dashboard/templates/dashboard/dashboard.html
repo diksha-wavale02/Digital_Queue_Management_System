@@ -65,7 +65,12 @@
       <a href="{% url 'service_list' %}"><i class="fa-solid fa-briefcase"></i> Service Management</a>
       <a href="{% url 'staff_list' %}"><i class="fa-solid fa-users"></i> Staff Management</a>
       <a href="{% url 'analytics' %}"><i class="fa-solid fa-chart-line"></i> Analytics</a>
-      <a href="#"><i class="fa-solid fa-bell"></i> Notifications</a>
+      <a href="{% url 'notification:notifications' %}">
+    <i class="fa-solid fa-bell"></i> Notifications
+    {% if unread_count > 0 %}
+    <span class="badge bg-danger ms-2">{{ unread_count }}</span>
+    {% endif %}
+</a>
       <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
       <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
     </nav>

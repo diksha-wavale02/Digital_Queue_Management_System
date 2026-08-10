@@ -1,22 +1,109 @@
-<div class="sidebar">
-
-<h2>DQMS</h2>
-
-<a href="#">Dashboard</a>
-
-<a href="#">Notifications</a>
-<li>
-    <a href="{% url 'notifications' %}">
-        🔔 Notifications
+{% load static %}
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white" style="width: 260px; min-height: 100vh; background: linear-gradient(180deg, #0d6efd 0%, #0a58ca 100%);">
+    
+    <!-- Logo -->
+    {% url 'dashboard:dashboard' %}
+        <i class="fa-solid fa-hospital fa-2x me-2"></i>
+        <span class="fs-4 fw-bold">DQMS</span>
     </a>
-</li>
+    <hr style="border-color: rgba(255,255,255,0.2);">
+    
+    <!-- Menu -->
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="{% url 'dashboard:dashboard' %}" class="nav-link text-white">
+                <i class="fa-solid fa-house me-2"></i>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard:queue_status' %}" class="nav-link text-white">
+                <i class="fa-solid fa-list-check me-2"></i>
+                Queue Management
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard:queue_status' %}" class="nav-link text-white">
+                <i class="fa-solid fa-briefcase me-2"></i>
+                Service Management
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard:queue_status' %}" class="nav-link text-white">
+                <i class="fa-solid fa-users me-2"></i>
+                Staff Management
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard:queue_status' %}" class="nav-link text-white">
+                <i class="fa-solid fa-chart-line me-2"></i>
+                Analytics
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'notification:notifications' %}" class="nav-link text-white d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-bell me-2"></i> Notifications</span>
+                {% if unread_count > 0 %}
+                <span class="badge bg-warning text-dark rounded-pill">{{ unread_count }}</span>
+                {% endif %}
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard:token_card' %}" class="nav-link text-white">
+                <i class="fa-solid fa-ticket me-2"></i>
+                Token Card
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard:token_history' %}" class="nav-link text-white">
+                <i class="fa-solid fa-clock-rotate-left me-2"></i>
+                Token History
+            </a>
+        </li>
+        <li>
+            <a href="/admin/" class="nav-link text-white">
+                <i class="fa-solid fa-gear me-2"></i>
+                Settings
+            </a>
+        </li>
 
-<a href="#">Reports</a>
+        <!-- LOGOUT BUTTON -->
+        <li class="nav-item mt-2">
+            <form method="post" action="{% url 'logout' %}" class="w-100">
+                {% csrf_token %}
+                <button type="submit" class="nav-link text-white border-0 bg-transparent w-100 text-start">
+                    <i class="fa-solid fa-right-from-bracket me-2"></i>
+                    Logout
+                </button>
+            </form>
+        </li>
+    </ul>
 
-<a href="#">Appointments</a>
-
-<a href="#">Settings</a>
-
-<a href="#">Logout</a>
-
+    <hr style="border-color: rgba(255,255,255,0.2);">
+    <!-- User Profile -->
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none">
+            <i class="fa-solid fa-user-circle fa-2x me-2"></i>
+            <strong>{{ request.user.username|default:"Admin" }}</strong>
+        </a>
+    </div>
 </div>
+
+<style>
+.nav-link {
+    border-radius: 8px;
+    margin-bottom: 4px;
+    transition: all 0.2s;
+}
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+.nav-link.active {
+    background-color: rgba(255,255,255,0.25);
+    font-weight: 600;
+}
+button.nav-link:focus {
+    outline: none;
+    box-shadow: none;
+}
+</style>

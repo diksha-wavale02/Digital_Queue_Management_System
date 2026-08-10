@@ -11,8 +11,30 @@ class Staff(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
-        db_table = 'staff_staff'  # existing table
-        managed = False  # django migration nahi chalega
+        db_table = 'staff_staff'
+        managed = False
+
+    def __str__(self): 
+        return self.full_name
+
+
+# NAYA MODEL YE ADD KARO
+class Token(models.Model):
+    token_number = models.CharField(max_length=10, unique=True)
+    service = models.CharField(max_length=100)
+    status = models.CharField(max_length=20, default='pending', choices=[
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('cancelled', 'Cancelled'),
+    ])
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'queue_token'
+        ordering = ['-created_at']
 
     def __str__(self):
+        return f"Token {self.token_number}"
         return self.full_name
+
+    

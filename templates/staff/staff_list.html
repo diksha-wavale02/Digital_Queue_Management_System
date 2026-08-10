@@ -1,0 +1,137 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'staff/staff.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Staff Management</title>
+
+    <link rel="stylesheet" href="{% static 'staff/style.css' %}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+    <div class="page-header">
+
+        <div>
+            <h1>Staff Management</h1>
+            <p>Manage all staff members of the queue system</p>
+        </div>
+
+        <a href="{% url 'add_staff' %}" class="add-btn">
+            + Add Staff
+        </a>
+
+    </div>
+
+
+    <!-- TABLE -->
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Employee ID</th>
+                    <th>Department</th>
+                    <th>Service</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for member in staff %}
+
+                <tr>
+
+                    <td>
+                        <strong>{{ member.full_name }}</strong>
+                    </td>
+
+                    <td>
+                        {{ member.employee_id }}
+                    </td>
+
+                    <td>
+                        {{ member.department }}
+                    </td>
+
+                    <td>
+                        {{ member.service }}
+                    </td>
+
+                    <td>
+                        {{ member.phone }}
+                    </td>
+
+                    <td>
+                        {{ member.email }}
+                    </td>
+
+                    <td>
+
+                        {% if member.status == "active" %}
+
+                            <span class="status active">
+                                Active
+                            </span>
+
+                        {% else %}
+
+                            <span class="status inactive">
+                                Inactive
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td class="actions">
+
+                        <a href="#" class="view-btn">
+                            View
+                        </a>
+
+                        <a href="#" class="delete-btn">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="8" class="no-data">
+                        No staff members found.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

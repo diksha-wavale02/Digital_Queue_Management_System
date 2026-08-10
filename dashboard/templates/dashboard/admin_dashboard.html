@@ -1,0 +1,558 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <style>
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #eef4ff;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #333;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .page-container {
+            width: 92%;
+            margin: 40px auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-header {
+            background: #ffffff;
+
+            min-height: 145px;
+
+            border-radius: 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 30px 42px;
+
+            box-sizing: border-box;
+
+            box-shadow: 0 10px 30px rgba(50, 90, 150, 0.10);
+
+            margin-bottom: 35px;
+        }
+
+
+        .page-header h1 {
+            margin: 0 0 10px 0;
+
+            font-size: 42px;
+            font-weight: 700;
+
+            color: #2864df;
+        }
+
+
+        .page-header p {
+            margin: 0;
+
+            font-size: 20px;
+
+            color: #555;
+        }
+
+
+        /* =========================
+           STATISTICS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 28px;
+
+            margin-bottom: 38px;
+        }
+
+
+        .stat-card {
+            background: #ffffff;
+
+            min-height: 175px;
+
+            border-radius: 20px;
+
+            padding: 32px 38px;
+
+            box-sizing: border-box;
+
+            border-left: 7px solid #2864df;
+
+            box-shadow: 0 10px 30px rgba(50, 90, 150, 0.10);
+        }
+
+
+        .stat-card h3 {
+            margin: 0 0 22px 0;
+
+            font-size: 24px;
+
+            color: #45566f;
+        }
+
+
+        .stat-card .number {
+            font-size: 48px;
+
+            font-weight: 700;
+
+            color: #2864df;
+        }
+
+
+        /* =========================
+           MANAGEMENT SECTION
+        ========================= */
+
+        .management-section {
+            background: #ffffff;
+
+            border-radius: 22px;
+
+            padding: 35px 40px;
+
+            box-shadow: 0 10px 30px rgba(50, 90, 150, 0.10);
+        }
+
+
+        .management-section h2 {
+            margin: 0 0 28px 0;
+
+            font-size: 30px;
+
+            color: #2864df;
+        }
+
+
+        /* =========================
+           MANAGEMENT GRID
+        ========================= */
+
+        .management-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* =========================
+           MANAGEMENT CARD
+        ========================= */
+
+        .management-card {
+            background: #eef4ff;
+
+            min-height: 82px;
+
+            padding: 20px 25px;
+
+            border-radius: 16px;
+
+            box-sizing: border-box;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            text-decoration: none;
+
+            color: #2864df;
+
+            transition: 0.2s;
+        }
+
+
+        .management-card:hover {
+            background: #dce8ff;
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 8px 20px rgba(40, 100, 223, 0.12);
+        }
+
+
+        .management-card .icon {
+            font-size: 25px;
+
+            width: 35px;
+
+            text-align: center;
+        }
+
+
+        .management-card strong {
+            font-size: 20px;
+
+            color: #2864df;
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .logout-area {
+            margin-top: 30px;
+
+            text-align: right;
+        }
+
+
+        .logout-btn {
+            display: inline-block;
+
+            background: #f04444;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            font-size: 17px;
+
+            font-weight: 600;
+        }
+
+
+        .logout-btn:hover {
+            background: #d93636;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .management-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .page-container {
+                width: 94%;
+            }
+
+            .page-header {
+                padding: 28px;
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .page-header h1 {
+                font-size: 34px;
+            }
+
+            .page-header p {
+                font-size: 17px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .management-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page-container">
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Welcome Admin! Manage the complete Digital Queue Management System.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         STATISTICS
+    ========================== -->
+
+    <div class="stats-grid">
+
+
+        <!-- STAFF -->
+
+        <div class="stat-card">
+
+            <h3>
+                Total Staff
+            </h3>
+
+            <div class="number">
+                {{ total_staff|default:"4" }}
+            </div>
+
+        </div>
+
+
+
+        <!-- SERVICES -->
+
+        <div class="stat-card">
+
+            <h3>
+                Total Services
+            </h3>
+
+            <div class="number">
+                {{ total_services|default:"25" }}
+            </div>
+
+        </div>
+
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div class="stat-card">
+
+            <h3>
+                Total Notifications
+            </h3>
+
+            <div class="number">
+                {{ total_notifications|default:"1" }}
+            </div>
+
+        </div>
+
+
+
+        <!-- REPORTS -->
+
+        <div class="stat-card">
+
+            <h3>
+                Total Reports
+            </h3>
+
+            <div class="number">
+                {{ total_reports|default:"7" }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         ADMIN MANAGEMENT
+    ========================== -->
+
+    <div class="management-section">
+
+
+        <h2>
+            Admin Management
+        </h2>
+
+
+
+        <div class="management-grid">
+
+
+            <!-- =====================
+                 STAFF MANAGEMENT
+            ====================== -->
+
+            <a href="/staff/" class="management-card">
+
+                <span class="icon">
+                    👥
+                </span>
+
+                <strong>
+                    Staff Management
+                </strong>
+
+            </a>
+
+
+
+            <!-- =====================
+                 SERVICE MANAGEMENT
+            ====================== -->
+
+            <a href="/services/" class="management-card">
+
+                <span class="icon">
+                    ⚙️
+                </span>
+
+                <strong>
+                    Service Management
+                </strong>
+
+            </a>
+
+
+
+            <!-- =====================
+                 ANALYTICS
+            ====================== -->
+
+            <a href="/analytics/" class="management-card">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <strong>
+                    Analytics
+                </strong>
+
+            </a>
+
+
+
+            <!-- =====================
+                 REPORTS
+            ====================== -->
+
+            <a href="/reports/" class="management-card">
+
+                <span class="icon">
+                    📄
+                </span>
+
+                <strong>
+                    Reports
+                </strong>
+
+            </a>
+
+
+
+            <!-- =====================
+                 NOTIFICATIONS
+            ====================== -->
+
+            <a href="/notifications/" class="management-card">
+
+                <span class="icon">
+                    🔔
+                </span>
+
+                <strong>
+                    Notifications
+                </strong>
+
+            </a>
+
+
+
+            <!-- =====================
+                 DJANGO ADMIN
+            ====================== -->
+
+            <a href="/admin/" class="management-card">
+
+                <span class="icon">
+                    🔐
+                </span>
+
+                <strong>
+                    Django Administration
+                </strong>
+
+            </a>
+
+
+        </div>
+
+
+        <!-- =====================
+             LOGOUT
+        ====================== -->
+
+        <div class="logout-area">
+
+            <a href="/logout/" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

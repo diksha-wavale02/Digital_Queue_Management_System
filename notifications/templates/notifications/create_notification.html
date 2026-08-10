@@ -1,23 +1,121 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Create Notification</title>
 
-    <link rel="stylesheet"
-          href="{% static 'notifications/css/notifications.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 550px;
+            padding: 35px 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-box h2 {
+            text-align: center;
+            color: #4C1D95;
+            margin-bottom: 25px;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .form-box input[type="text"],
+        .form-box textarea,
+        .form-box select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 15px;
+            background: #F9FAFB;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-box input:focus,
+        .form-box textarea:focus,
+        .form-box select:focus {
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+            outline: none;
+        }
+
+        .form-box textarea {
+            resize: vertical;
+        }
+
+        .form-box select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns=N/A fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Type ke hisab se border color */
+        select[name="notification_type"] option[value="Token"] { background: #D1FAE5; }
+        select[name="notification_type"] option[value="Queue"] { background: #FEF3C7; }
+        select[name="notification_type"] option[value="System"] { background: #FEE2E2; }
+
+    </style>
 </head>
 
 <body>
 
 <div class="form-box">
 
-    <h2>Create Notification</h2>
+    <h2><i class="fa-solid fa-bell"></i> Create Notification</h2>
 
     <form method="POST">
         {% csrf_token %}
@@ -36,16 +134,15 @@
             required
         ></textarea>
 
-        <select name="notification_type">
-
-            <option value="Token">Token</option>
-            <option value="Queue">Queue</option>
-            <option value="System">System</option>
-
+        <select name="notification_type" required>
+            <option value="" disabled selected>Select Notification Type</option>
+            <option value="Token">🟢 Token</option>
+            <option value="Queue">🟡 Queue</option>
+            <option value="System">🔴 System</option>
         </select>
 
         <button type="submit">
-            Send Notification
+            <i class="fa-solid fa-paper-plane"></i> Send Notification
         </button>
 
     </form>
