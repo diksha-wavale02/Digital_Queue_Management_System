@@ -1,0 +1,275 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Staff</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef4ff;
+            color: #334155;
+            min-height: 100vh;
+        }
+
+        /* Main Page */
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        /* Form Card */
+        .form-container {
+            max-width: 850px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.12);
+        }
+
+        /* Header */
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .form-header h1 {
+            color: #2563eb;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            text-decoration: none;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #dbeafe;
+        }
+
+        /* Form */
+        form {
+            width: 100%;
+        }
+
+        form p {
+            margin-bottom: 22px;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #334155;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px #dbeafe;
+        }
+
+        /* Help Text */
+        form .helptext {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* Error */
+        .error-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .errorlist {
+            color: #dc2626;
+            margin-top: 5px;
+            padding-left: 18px;
+            font-size: 14px;
+        }
+
+        /* Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .cancel-btn {
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .cancel-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .save-btn {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .save-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+
+            .page-container {
+                padding: 15px;
+            }
+
+            .form-container {
+                padding: 22px;
+            }
+
+            .form-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            .form-header h1 {
+                font-size: 26px;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .cancel-btn,
+            .save-btn {
+                text-align: center;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="form-container">
+
+        <!-- Header -->
+        <div class="form-header">
+
+            <div>
+                <h1>Add Staff</h1>
+                <p>
+                    Add a new staff member to the Digital Queue Management System.
+                </p>
+            </div>
+
+            <a href="{% url 'staff_list' %}" class="back-btn">
+                ← Back to Staff
+            </a>
+
+        </div>
+
+
+        <!-- Form -->
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="error-box">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+
+            <!-- Automatically display your StaffForm fields -->
+            {{ form.as_p }}
+
+
+            <!-- Buttons -->
+            <div class="form-actions">
+
+                <a href="{% url 'staff_list' %}" class="cancel-btn">
+                    Cancel
+                </a>
+
+                <button type="submit" class="save-btn">
+                    + Add Staff
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

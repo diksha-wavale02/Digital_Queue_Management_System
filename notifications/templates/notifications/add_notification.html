@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Notification</title>
+
+    <link rel="stylesheet"
+          href="{% static 'notifications/notifications.css' %}">
+</head>
+
+<body>
+
+<div class="notification-page">
+
+    <!-- Left Information Section -->
+    <div class="notification-info">
+
+        <div class="info-icon">
+            🔔
+        </div>
+
+        <h1>Create Notification</h1>
+
+        <p>
+            Send important updates and queue information
+            to your users.
+        </p>
+
+        <div class="info-item">
+            <span>✓</span>
+            Token updates
+        </div>
+
+        <div class="info-item">
+            <span>✓</span>
+            Queue status alerts
+        </div>
+
+        <div class="info-item">
+            <span>✓</span>
+            System notifications
+        </div>
+
+    </div>
+
+
+    <!-- Form Section -->
+    <div class="notification-card">
+
+        <div class="card-header">
+
+            <div>
+                <h2>New Notification</h2>
+                <p>Enter notification details below</p>
+            </div>
+
+            <div class="bell">
+                🔔
+            </div>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- Title -->
+            <div class="input-group">
+
+                <label>
+                    Notification Title
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="e.g. Your token is ready"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Message -->
+            <div class="input-group">
+
+                <label>
+                    Message
+                </label>
+
+                <textarea
+                    name="message"
+                    rows="5"
+                    placeholder="Write your notification message..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- Type -->
+            <div class="input-group">
+
+                <label>
+                    Notification Type
+                </label>
+
+                <select name="notification_type" required>
+
+                    <option value="">
+                        Select notification type
+                    </option>
+
+                    <option value="Token">
+                        🎟 Token
+                    </option>
+
+                    <option value="Queue">
+                        👥 Queue
+                    </option>
+
+                    <option value="System">
+                        ⚙ System
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Buttons -->
+            <div class="form-buttons">
+
+                <a href="{% url 'notification_list' %}"
+                   class="cancel-btn">
+                    Cancel
+                </a>
+
+                <button type="submit"
+                        class="send-btn">
+                    🔔 Send Notification
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

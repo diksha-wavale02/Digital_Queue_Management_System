@@ -1,0 +1,80 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex align-items-center mb-4">
+        <i class="fa-solid fa-ticket fa-2x text-success me-3"></i>
+        <h2 class="mb-0">Your Token Card</h2>
+    </div>
+
+    <a href="{% url 'dashboard:dashboard' %}" class="btn btn-outline-secondary btn-sm mb-4">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+    </a>
+
+    {% if token %}
+    <!-- Token Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0 text-center">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">DQMS</h4>
+                    <small>Digital Queue Management System</small>
+                </div>
+                <div class="card-body p-4">
+                    <p class="text-muted mb-1">Service</p>
+                    <h5 class="fw-bold">{{ token.service }}</h5>
+                    <hr>
+
+                    <p class="text-muted mb-1">Your Token Number</p>
+                    <h1 class="display-1 fw-bold text-primary">{{ token.token_number }}</h1>
+                    <hr>
+
+                    <div class="row text-start">
+                        <div class="col-6">
+                            <p class="text-muted mb-0">Date</p>
+                            <p class="fw-bold">{{ token.created_at|date:"d M Y" }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted mb-0">Time</p>
+                            <p class="fw-bold">{{ token.created_at|time:"h:i A" }}</p>
+                        </div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-12">
+                            <p class="text-muted mb-0">Status</p>
+                            {% if token.status == 'pending' %}
+                                <span class="badge bg-warning fs-6">Pending</span>
+                            {% elif token.status == 'completed' %}
+                                <span class="badge bg-success fs-6">Completed</span>
+                            {% else %}
+                                <span class="badge bg-danger fs-6">Cancelled</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light">
+                    <button onclick="window.print()" class="btn btn-primary w-100">
+                        <i class="fa-solid fa-print me-2"></i> Print Token
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            <i class="fa-solid fa-triangle-exclamation fa-2x mb-2"></i>
+            <h5>No Active Token Found</h5>
+            <p>Please generate a new token from the dashboard.</p>
+            <a href="{% url 'dashboard:dashboard' %}" class="btn btn-primary">Get New Token</a>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+@media print {
+    .sidebar, .btn, .navbar { display: none !important; }
+    .card { border: none !important; box-shadow: none !important; }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DQMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body{margin:0;font-family:Arial;display:flex;background:#F8FAFC}
+        .sidebar{width:240px;background:#1E3A8A;color:#fff;min-height:100vh;padding:20px}
+        .sidebar a{color:#fff;text-decoration:none;display:block;padding:10px;border-radius:8px;margin:5px 0}
+        .sidebar a:hover{background:#3B82F6}
+        .content{flex:1;padding:30px}
+        .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+        .stat-card{background:#fff;padding:20px;border-radius:12px}
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+      <div class="logo"><i class="fa-solid fa-qrcode"></i> DQMS</div>
+      <nav>
+        <a href="/queue/dashboard/"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="{% url 'analytics' %}"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        <a href="{% url 'notification_list' %}"><i class="fa-solid fa-bell"></i> Notifications</a>
+        <a href="#"><i class="fa-solid fa-briefcase"></i> Service Management</a>
+        <a href="#"><i class="fa-solid fa-users"></i> Staff Management</a>
+      </nav>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

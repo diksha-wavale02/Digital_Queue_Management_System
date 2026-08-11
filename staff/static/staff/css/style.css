@@ -1,0 +1,392 @@
+/* =========================
+   PAGE
+========================= */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #eef4ff;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #333;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.page-container {
+    width: 92%;
+
+    margin: 55px auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.page-header {
+    background: #ffffff;
+
+    min-height: 145px;
+
+    border-radius: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 42px;
+
+    box-shadow:
+        0 10px 30px rgba(40, 100, 223, 0.12);
+
+    margin-bottom: 34px;
+}
+
+
+/* TITLE */
+
+.page-header h1 {
+    margin: 0 0 10px 0;
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    color: #2864df;
+}
+
+
+/* SUBTITLE */
+
+.page-header p {
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #64748b;
+}
+
+
+/* =========================
+   ADD STAFF BUTTON
+========================= */
+
+.add-btn {
+    display: inline-block;
+
+    background: #2864df;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    padding: 16px 26px;
+
+    border-radius: 12px;
+
+    transition: all 0.2s ease;
+
+    box-shadow:
+        0 5px 12px rgba(40, 100, 223, 0.20);
+}
+
+.add-btn:hover {
+    background: #1f55c5;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(40, 100, 223, 0.28);
+}
+
+
+/* =========================
+   TABLE CONTAINER
+========================= */
+
+.table-container {
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 10px 30px rgba(40, 100, 223, 0.12);
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+    width: 100%;
+
+    min-width: 1100px;
+
+    border-collapse: collapse;
+}
+
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+thead {
+    background: #2864df;
+}
+
+thead th {
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    padding: 20px 22px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   TABLE BODY
+========================= */
+
+tbody td {
+    padding: 19px 22px;
+
+    font-size: 15px;
+
+    color: #334155;
+
+    border-bottom: 1px solid #e5eaf2;
+
+    white-space: nowrap;
+}
+
+
+/* Alternate rows */
+
+tbody tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+
+/* Hover */
+
+tbody tr:hover {
+    background: #eef5ff;
+
+    transition: 0.2s;
+}
+
+
+/* LAST ROW */
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================
+   NAME COLOR
+========================= */
+
+tbody td:nth-child(2) {
+    color: #1d4ed8;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+tbody td:nth-child(8) {
+    font-weight: 600;
+}
+
+
+/* Active status */
+
+.status-active {
+    display: inline-block;
+
+    background: #dcfce7;
+
+    color: #15803d;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* Inactive status */
+
+.status-inactive {
+    display: inline-block;
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+    white-space: nowrap;
+}
+
+
+/* EDIT BUTTON */
+
+.view-btn {
+    display: inline-block;
+
+    background: #2864df;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-right: 6px;
+
+    transition: 0.2s;
+}
+
+.view-btn:hover {
+    background: #1f55c5;
+
+    transform: translateY(-1px);
+}
+
+
+/* DELETE BUTTON */
+
+.delete-btn {
+    display: inline-block;
+
+    background: #f04444;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    background: #d93636;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   NO DATA
+========================= */
+
+.no-data {
+    text-align: center !important;
+
+    padding: 45px !important;
+
+    color: #64748b !important;
+
+    font-size: 17px !important;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .page-container {
+        width: 95%;
+    }
+
+    .page-header {
+        padding: 25px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
+
+    .page-header p {
+        font-size: 17px;
+    }
+
+    .add-btn {
+        width: 100%;
+
+        text-align: center;
+
+        padding: 14px 0;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 1100px;
+    }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report Details</title>
+</head>
+<body>
+{% load static %}
+<link rel="stylesheet" href="{% static 'reports/style.css' %}">
+
+<h2>Report Details</h2>
+
+<p><b>Report Name:</b> {{ report.report_name }}</p>
+
+<p><b>Report Type:</b> {{ report.report_type }}</p>
+
+<p><b>Total Tokens:</b> {{ report.total_tokens }}</p>
+
+<p><b>Completed Tokens:</b> {{ report.completed_tokens }}</p>
+
+<p><b>Cancelled Tokens:</b> {{ report.cancelled_tokens }}</p>
+
+<p><b>Average Wait Time:</b> {{ report.average_wait_time }} Minutes</p>
+
+<p><b>Generated Date:</b> {{ report.generated_date }}</p>
+
+<br>
+
+<a href="{% url 'report_list' %}">Back</a>
+
+</body>
+</html>

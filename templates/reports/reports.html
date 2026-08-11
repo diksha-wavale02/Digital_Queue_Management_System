@@ -1,0 +1,81 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'reports/css/reports.css' %}">
+<div class="report-container">
+
+    <div class="report-header">
+        <div>
+            <h2>Reports</h2>
+            <p>View and manage queue reports</p>
+        </div>
+
+        <a href="#" class="report-btn">Generate Report</a>
+    </div>
+
+    <div class="report-cards">
+
+        <div class="report-card">
+            <h3>Total Tokens</h3>
+            <div class="number">250</div>
+        </div>
+
+        <div class="report-card">
+            <h3>Completed</h3>
+            <div class="number">180</div>
+        </div>
+
+        <div class="report-card">
+            <h3>Cancelled</h3>
+            <div class="number">20</div>
+        </div>
+
+        <div class="report-card">
+            <h3>Average Wait Time</h3>
+            <div class="number">15 min</div>
+        </div>
+
+    </div>
+
+    <div class="report-table-box">
+
+        <h3>Recent Reports</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Report Name</th>
+                    <th>Type</th>
+                    <th>Total Tokens</th>
+                    <th>Completed</th>
+                    <th>Cancelled</th>
+                    <th>Average Wait</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ report.report_name }}</td>
+                    <td>{{ report.report_type }}</td>
+                    <td>{{ report.total_tokens }}</td>
+                    <td>{{ report.completed_tokens }}</td>
+                    <td>{{ report.cancelled_tokens }}</td>
+                    <td>{{ report.average_wait_time }} min</td>
+                    <td>
+                        <a href="#" class="view-btn">View</a>
+                        <a href="#" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="empty">
+                        No reports available.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

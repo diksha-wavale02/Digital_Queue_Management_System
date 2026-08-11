@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Report</title>
+</head>
+<body>
+
+<h2>Add New Report</h2>
+{% load static %}
+<link rel="stylesheet" href="{% static 'reports/style.css' %}">
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Report Name</label><br>
+    <input type="text" name="report_name"><br><br>
+
+    <label>Report Type</label><br>
+    <select name="report_type">
+        <option>Daily</option>
+        <option>Weekly</option>
+        <option>Monthly</option>
+    </select><br><br>
+
+    <label>Total Tokens</label><br>
+    <input type="number" name="total_tokens"><br><br>
+
+    <label>Completed Tokens</label><br>
+    <input type="number" name="completed_tokens"><br><br>
+
+    <label>Cancelled Tokens</label><br>
+    <input type="number" name="cancelled_tokens"><br><br>
+
+    <label>Average Wait Time</label><br>
+    <input type="number" name="average_wait_time"><br><br>
+
+    <button type="submit">Save Report</button>
+
+</form>
+
+<br>
+
+<a href="{% url 'report_list' %}">View Reports</a>
+
+</body>
+</html>

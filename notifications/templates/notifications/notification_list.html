@@ -1,0 +1,21 @@
+{% extends 'queue_app/base.html' %}
+{% block content %}
+<div class="content">
+  <h1>Notifications</h1>
+  <a href="{% url 'add_notification' %}" style="float:right;background:#16A34A;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;">+ Add Notification</a>
+  
+  <div class="card" style="background:#fff;padding:20px;border-radius:12px;margin-top:20px;">
+    {% for n in notifications %}
+    <div style="padding:15px;border-left:4px solid 
+      {% if n.type == 'success' %}#16A34A{% elif n.type == 'warning' %}#F59E0B{% elif n.type == 'danger' %}#DC2626{% else %}#1D4ED8{% endif %};
+      background:#F8FAFC;margin-bottom:10px;border-radius:8px;">
+      <strong>{{ n.title }}</strong>
+      <a href="{% url 'delete_notification' n.id %}" style="float:right;color:red;">Delete</a>
+      <span style="float:right;color:#888;font-size:12px;margin-right:15px;">{{ n.time }}</span>
+    </div>
+    {% empty %}
+    <p>No new notifications</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

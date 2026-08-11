@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Edit Service</title>
+
+<link rel="stylesheet"
+href="{% static 'services/css/style.css' %}">
+
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h1>Edit Service</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit">
+
+Update
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

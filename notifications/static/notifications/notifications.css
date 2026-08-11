@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #eef3ff;
+    padding: 30px;
+}
+
+.notification-container {
+    width: 95%;
+    margin: auto;
+}
+
+/* Header */
+
+.notification-header {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.notification-header h2 {
+    color: #2563eb;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.notification-header p {
+    color: #666;
+    font-size: 15px;
+}
+
+/* Add Button */
+
+.add-notification-btn {
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.add-notification-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Notification Box */
+
+.notification-box {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #2563eb;
+    color: white;
+}
+
+th {
+    padding: 16px;
+    text-align: center;
+}
+
+td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+tbody tr:hover {
+    background: #f5f8ff;
+}
+
+/* Status */
+
+.status {
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.unread {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.read {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+/* Buttons */
+
+.view-btn,
+.delete-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 7px;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.view-btn {
+    background: #2563eb;
+}
+
+.view-btn:hover {
+    background: #1d4ed8;
+}
+
+.delete-btn {
+    background: #ef4444;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+}
+
+/* Empty */
+
+.empty-notification {
+    padding: 30px;
+    color: #777;
+    text-align: center;
+}
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .notification-container {
+        width: 100%;
+    }
+
+    .notification-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .notification-box {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 800px;
+    }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report List</title>
+</head>
+<body>
+
+<h2>Reports List</h2>
+{% load static %}
+<link rel="stylesheet" href="{% static 'reports/style.css' %}">
+
+<a href="{% url 'add_report' %}">Add Report</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Total</th>
+    <th>Completed</th>
+    <th>Cancelled</th>
+    <th>Action</th>
+</tr>
+
+{% for report in reports %}
+
+<tr>
+
+<td>{{ report.id }}</td>
+
+<td>{{ report.report_name }}</td>
+
+<td>{{ report.report_type }}</td>
+
+<td>{{ report.total_tokens }}</td>
+
+<td>{{ report.completed_tokens }}</td>
+
+<td>{{ report.cancelled_tokens }}</td>
+
+<td>
+
+<a href="{% url 'report_detail' report.id %}">View</a>
+
+|
+
+<a href="{% url 'delete_report' report.id %}">Delete</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

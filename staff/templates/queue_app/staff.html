@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Staff Management</title>
+
+    <link rel="stylesheet" href="{% static 'staff/css/staff.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="staff-page">
+
+    <!-- HEADER -->
+    <div class="staff-title-box">
+
+        <div class="title-icon">
+            <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div>
+            <h1>Staff Management</h1>
+            <p>Manage all staff members of Digital Queue Management System</p>
+        </div>
+
+    </div>
+
+
+    <!-- STAFF TABLE -->
+    <div class="staff-table-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Employee ID</th>
+                    <th>Department</th>
+                    <th>Service</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for member in staff %}
+
+                <tr>
+
+                    <td>{{ member.id }}</td>
+
+                    <td>{{ member.name }}</td>
+
+                    <td>{{ member.employee_id }}</td>
+
+                    <td>{{ member.department }}</td>
+
+                    <td>{{ member.service }}</td>
+
+                    <td>{{ member.email }}</td>
+
+                    <td>{{ member.phone }}</td>
+
+                    <td>
+                        {% if member.status == "Available" %}
+                            <span class="available">Available</span>
+
+                        {% elif member.status == "Busy" %}
+                            <span class="busy">Busy</span>
+
+                        {% else %}
+                            <span class="other-status">
+                                {{ member.status }}
+                            </span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <div class="actions">
+
+                            <a href="{% url 'update_staff' member.id %}"
+                               class="edit">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
+                            <a href="{% url 'delete_staff' member.id %}"
+                               class="delete"
+                               onclick="return confirm('Are you sure you want to delete this staff member?');">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="9" class="no-record">
+                        No staff records found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="search-area">
+        <button class="search-btn">
+            Search
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>
