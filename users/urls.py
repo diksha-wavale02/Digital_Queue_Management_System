@@ -16,4 +16,6 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
 
     path("feedback/", views.feedback, name="feedback"),
+    
+    path('token-history/', views.token_history_view, name='token_history'),
 ]

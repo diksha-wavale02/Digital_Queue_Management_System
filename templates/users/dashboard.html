@@ -1,65 +1,859 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Dashboard | DQMS</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+
+
+    <style>
+
+        /* =====================================================
+                           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family: "Segoe UI",
+                         system-ui,
+                         -apple-system,
+                         sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f9ff 0%,
+                    #eef3ff 50%,
+                    #f8faff 100%
+                );
+
+            min-height: 100vh;
+
+            color: #172033;
+        }
+
+
+        /* =====================================================
+                           NAVBAR
+        ===================================================== */
+
+        .dashboard-navbar {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1726d4,
+                    #303fe9
+                );
+
+            padding: 14px 0;
+
+            box-shadow:
+                0 5px 20px rgba(30, 45, 210, 0.20);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .brand {
+
+            color: white !important;
+
+            text-decoration: none;
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .brand-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 11px;
+
+            background: rgba(255,255,255,0.16);
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+        }
+
+
+        .logout-btn {
+
+            background: white;
+
+            color: #2635e8;
+
+            border: none;
+
+            padding: 9px 18px;
+
+            border-radius: 50px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.10);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .logout-btn:hover {
+
+            background: #f1f3ff;
+
+            color: #1723c8;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 6px 15px rgba(0,0,0,0.15);
+        }
+
+
+
+        /* =====================================================
+                         MAIN CONTAINER
+        ===================================================== */
+
+        .dashboard-container {
+
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 50px 20px 60px;
+        }
+
+
+
+        /* =====================================================
+                         WELCOME SECTION
+        ===================================================== */
+
+        .welcome-box {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 38px 40px;
+
+            margin-bottom: 35px;
+
+            border: 1px solid #e7eaff;
+
+            box-shadow:
+                0 10px 35px rgba(38,53,232,0.07);
+        }
+
+
+        .welcome-box::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: #edf0ff;
+
+            right: -70px;
+
+            top: -80px;
+        }
+
+
+        .welcome-box::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+
+            height: 100px;
+
+            border-radius: 50%;
+
+            background: #f3f5ff;
+
+            right: 80px;
+
+            bottom: -55px;
+        }
+
+
+        .welcome-content {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .welcome-label {
+
+            display: inline-block;
+
+            background: #eef1ff;
+
+            color: #2635e8;
+
+            padding: 6px 13px;
+
+            border-radius: 50px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            margin-bottom: 12px;
+        }
+
+
+        .welcome-title {
+
+            font-size: 32px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            color: #151a2e;
+        }
+
+
+        .welcome-title span {
+
+            color: #2635e8;
+        }
+
+
+        .welcome-subtitle {
+
+            color: #7a8195;
+
+            font-size: 14px;
+
+            margin: 0;
+        }
+
+
+
+        /* =====================================================
+                         SECTION TITLE
+        ===================================================== */
+
+        .section-heading {
+
+            margin-bottom: 20px;
+        }
+
+
+        .section-heading h3 {
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            margin: 0;
+
+            color: #1b2238;
+        }
+
+
+        .section-heading p {
+
+            color: #858b9d;
+
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+
+
+
+        /* =====================================================
+                         DASHBOARD CARDS
+        ===================================================== */
+
+        .dashboard-card {
+
+            height: 100%;
+
+            border: 1px solid #e8eaf2;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.95);
+
+            box-shadow:
+                0 7px 25px rgba(31,42,90,0.06);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+
+        .dashboard-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: #d9ddff;
+
+            box-shadow:
+                0 18px 35px rgba(31,42,90,0.12);
+        }
+
+
+        .card-body-custom {
+
+            padding: 28px;
+
+            min-height: 310px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            text-align: center;
+        }
+
+
+
+        /* =====================================================
+                           ICONS
+        ===================================================== */
+
+        .card-icon-box {
+
+            width: 82px;
+
+            height: 82px;
+
+            border-radius: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            font-size: 38px;
+
+            transition: transform 0.3s ease;
+        }
+
+
+        .dashboard-card:hover .card-icon-box {
+
+            transform: scale(1.08) rotate(2deg);
+        }
+
+
+        .profile-icon {
+
+            background: #edf1ff;
+
+            color: #2635e8;
+        }
+
+
+        .feedback-icon {
+
+            background: #e9fbf2;
+
+            color: #16a765;
+        }
+
+
+        .token-icon {
+
+            background: #fff6df;
+
+            color: #e6a400;
+        }
+
+
+
+        /* =====================================================
+                         CARD TEXT
+        ===================================================== */
+
+        .card-title {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            color: #1b2238;
+        }
+
+
+        .card-description {
+
+            color: #81889b;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+
+        /* =====================================================
+                         CARD BUTTONS
+        ===================================================== */
+
+        .dashboard-btn {
+
+            width: 100%;
+
+            border-radius: 50px;
+
+            padding: 11px 18px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            border: none;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .profile-btn {
+
+            background: #2635e8;
+
+            color: white;
+        }
+
+
+        .profile-btn:hover {
+
+            background: #1723c8;
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        .feedback-btn {
+
+            background: #18a968;
+
+            color: white;
+        }
+
+
+        .feedback-btn:hover {
+
+            background: #108852;
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        .token-btn {
+
+            background: #f4b400;
+
+            color: #222;
+
+        }
+
+
+        .token-btn:hover {
+
+            background: #dda100;
+
+            color: #222;
+
+            transform: translateY(-2px);
+        }
+
+
+
+        /* =====================================================
+                         QUICK INFO
+        ===================================================== */
+
+        .info-section {
+
+            margin-top: 40px;
+        }
+
+
+        .info-card {
+
+            background: white;
+
+            border: 1px solid #e8eaf2;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            height: 100%;
+
+            box-shadow:
+                0 5px 20px rgba(31,42,90,0.04);
+        }
+
+
+        .info-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 12px;
+
+            background: #eef1ff;
+
+            color: #2635e8;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .info-card h5 {
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+        }
+
+
+        .info-card p {
+
+            font-size: 12px;
+
+            color: #858b9d;
+
+            margin: 0;
+
+            line-height: 1.6;
+        }
+
+
+
+        /* =====================================================
+                         RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 767px) {
+
+            .dashboard-container {
+
+                padding-top: 30px;
+            }
+
+
+            .welcome-box {
+
+                padding: 28px 22px;
+
+                border-radius: 17px;
+            }
+
+
+            .welcome-title {
+
+                font-size: 26px;
+            }
+
+
+            .brand {
+
+                font-size: 15px;
+            }
+
+
+            .brand-icon {
+
+                width: 36px;
+
+                height: 36px;
+
+                font-size: 18px;
+            }
+
+
+            .logout-btn {
+
+                padding: 8px 14px;
+
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
-<body class="bg-light">
 
-<nav class="navbar navbar-dark bg-primary">
+<body>
 
-    <div class="container">
 
-        <span class="navbar-brand">
-            Digital Queue Management System
-        </span>
+<!-- =====================================================
+                           NAVBAR
+===================================================== -->
 
-        <a href="{% url 'logout' %}" class="btn btn-light">
-            Logout
+<nav class="dashboard-navbar">
+
+    <div class="container d-flex
+                justify-content-between
+                align-items-center">
+
+
+        <!-- BRAND -->
+
+        <a href="{% url 'dashboard' %}"
+           class="brand d-flex
+                  align-items-center gap-2">
+
+
+            <span class="brand-icon">
+
+                <i class="bi bi-people-fill"></i>
+
+            </span>
+
+
+            <span>
+                DQMS
+            </span>
+
+
         </a>
+
+
+        <!-- LOGOUT -->
+
+        <a href="{% url 'logout' %}"
+           class="logout-btn">
+
+            <i class="bi bi-box-arrow-right me-1"></i>
+
+            Logout
+
+        </a>
+
 
     </div>
 
 </nav>
 
-<div class="container mt-5">
 
-    <div class="text-center">
 
-        <h2>
-            Welcome,
-            <span class="text-primary">
-                {{ request.user.username }}
+<!-- =====================================================
+                         MAIN CONTENT
+===================================================== -->
+
+<main class="dashboard-container">
+
+
+    <!-- =================================================
+                         WELCOME
+    ================================================== -->
+
+    <div class="welcome-box">
+
+
+        <div class="welcome-content">
+
+
+            <span class="welcome-label">
+
+                <i class="bi bi-grid-1x2-fill me-1"></i>
+
+                Customer Dashboard
+
             </span>
-        </h2>
 
-        <p class="text-muted">
-            Customer Dashboard
+
+            <h1 class="welcome-title">
+
+                Welcome,
+
+                <span>
+
+                    {% if request.user.first_name %}
+
+                        {{ request.user.first_name }}
+
+                    {% else %}
+
+                        {{ request.user.username }}
+
+                    {% endif %}
+
+                </span>
+
+                👋
+
+            </h1>
+
+
+            <p class="welcome-subtitle">
+
+                Manage your profile, feedback and token history
+                from one place.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+                       ACTION CARDS
+    ================================================== -->
+
+    <div class="section-heading">
+
+        <h3>
+            Quick Access
+        </h3>
+
+        <p>
+            Choose an option to continue
         </p>
 
     </div>
 
-    <hr>
 
-    <div class="row mt-4">
+    <div class="row g-4">
 
-        <div class="col-md-4">
 
-            <div class="card shadow">
+        <!-- =================================================
+                           PROFILE
+        ================================================== -->
 
-                <div class="card-body text-center">
+        <div class="col-lg-4 col-md-6">
 
-                    <h4>👤 Profile</h4>
+            <div class="dashboard-card">
 
-                    <p>View and Update Profile</p>
 
-                    <a href="{% url 'profile' %}" class="btn btn-primary">
-                        Open
+                <div class="card-body-custom">
+
+
+                    <div>
+
+
+                        <div class="card-icon-box profile-icon">
+
+                            <i class="bi bi-person-circle"></i>
+
+                        </div>
+
+
+                        <h4 class="card-title">
+
+                            Profile
+
+                        </h4>
+
+
+                        <p class="card-description">
+
+                            View and update your personal
+                            profile information.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <a href="{% url 'profile' %}"
+                       class="btn dashboard-btn profile-btn">
+
+                        <i class="bi bi-person-gear me-2"></i>
+
+                        Open Profile
+
                     </a>
+
 
                 </div>
 
@@ -67,19 +861,57 @@
 
         </div>
 
-        <div class="col-md-4">
 
-            <div class="card shadow">
 
-                <div class="card-body text-center">
+        <!-- =================================================
+                         FEEDBACK
+        ================================================== -->
 
-                    <h4>📝 Feedback</h4>
+        <div class="col-lg-4 col-md-6">
 
-                    <p>Share Your Experience</p>
+            <div class="dashboard-card">
 
-                    <a href="{% url 'feedback' %}" class="btn btn-success">
-                        Feedback
+
+                <div class="card-body-custom">
+
+
+                    <div>
+
+
+                        <div class="card-icon-box feedback-icon">
+
+                            <i class="bi bi-chat-left-heart-fill"></i>
+
+                        </div>
+
+
+                        <h4 class="card-title">
+
+                            Feedback
+
+                        </h4>
+
+
+                        <p class="card-description">
+
+                            Share your experience and
+                            help us improve our service.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <a href="{% url 'feedback' %}"
+                       class="btn dashboard-btn feedback-btn">
+
+                        <i class="bi bi-send me-2"></i>
+
+                        Give Feedback
+
                     </a>
+
 
                 </div>
 
@@ -87,29 +919,195 @@
 
         </div>
 
-        <div class="col-md-4">
 
-            <div class="card shadow">
 
-                <div class="card-body text-center">
+        <!-- =================================================
+                       TOKEN HISTORY
+        ================================================== -->
 
-                    <h4>🎫 Token History</h4>
+        <div class="col-lg-4 col-md-6">
 
-                    <p>View Previous Tokens</p>
+            <div class="dashboard-card">
 
-                    <a href="#" class="btn btn-warning">
-                        View
+
+                <div class="card-body-custom">
+
+
+                    <div>
+
+
+                        <div class="card-icon-box token-icon">
+
+                            <i class="bi bi-ticket-detailed-fill"></i>
+
+                        </div>
+
+
+                        <h4 class="card-title">
+
+                            Token History
+
+                        </h4>
+
+
+                        <p class="card-description">
+
+                            View your previous tokens and
+                            queue activity.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <a href="{% url 'token_history' %}"
+                       class="btn dashboard-btn token-btn">
+
+                        <i class="bi bi-clock-history me-2"></i>
+
+                        View History
+
                     </a>
+
 
                 </div>
 
             </div>
 
         </div>
+
 
     </div>
 
-</div>
+
+
+    <!-- =================================================
+                         INFORMATION
+    ================================================== -->
+
+    <div class="info-section">
+
+
+        <div class="row g-4">
+
+
+            <!-- INFO 1 -->
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+
+                    <div class="info-icon">
+
+                        <i class="bi bi-lightning-charge-fill"></i>
+
+                    </div>
+
+
+                    <h5>
+                        Fast & Simple
+                    </h5>
+
+
+                    <p>
+
+                        Access your account features
+                        quickly from your dashboard.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INFO 2 -->
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+
+                    <div class="info-icon">
+
+                        <i class="bi bi-shield-check"></i>
+
+                    </div>
+
+
+                    <h5>
+                        Secure
+                    </h5>
+
+
+                    <p>
+
+                        Your profile and queue information
+                        are securely managed.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INFO 3 -->
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+
+                    <div class="info-icon">
+
+                        <i class="bi bi-clock-history"></i>
+
+                    </div>
+
+
+                    <h5>
+                        Track Your Queue
+                    </h5>
+
+
+                    <p>
+
+                        Keep track of your previous token
+                        activity whenever you need.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+                           JS
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
 
 </body>
+
 </html>

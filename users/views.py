@@ -161,3 +161,7 @@ def feedback(request):
         "users/feedback.html",
         {"form": form}
     )
+
+# Agar file 'users/templates/users/token_history.html' me hai:
+def token_history_view(request):
+    return render(request, 'users/token_history.html')

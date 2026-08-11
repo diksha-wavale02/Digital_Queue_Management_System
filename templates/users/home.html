@@ -1,102 +1,1858 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
 
-<title>Digital Queue Management System</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        DQMS - Digital Queue Management System
+    </title>
 
-<style>
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-body{
-    background:#f8f9fa;
-}
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-.hero{
-    margin-top:70px;
-}
 
-.hero h1{
-    font-size:55px;
-    font-weight:bold;
-}
+    <style>
 
-.hero p{
-    font-size:20px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-</style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111;
+            background: #ffffff;
+        }
+
+
+        /* =====================================================
+                           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            background: #ffffff;
+            border-top: 3px solid #4cc6c8;
+            padding: 14px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-circle {
+            width: 46px;
+            height: 46px;
+
+            border: 3px solid #1261ad;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #1261ad;
+
+            font-size: 20px;
+
+            margin-right: 8px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111b5e;
+        }
+
+
+        /* NAVIGATION */
+
+        .navbar-nav {
+            gap: 8px;
+        }
+
+        .nav-link {
+            position: relative;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            color: #222 !important;
+
+            padding: 10px 15px !important;
+
+            margin: 0 2px;
+
+            transition: all 0.3s ease;
+        }
+
+
+        /* HOVER */
+
+        .nav-link:hover {
+            color: #2635e8 !important;
+        }
+
+
+        /* ACTIVE HOME */
+
+        .nav-link.active {
+            color: #2635e8 !important;
+            font-weight: 600;
+        }
+
+
+        /* UNDERLINE */
+
+        .nav-link::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 15px;
+            right: 15px;
+
+            bottom: 3px;
+
+            height: 2px;
+
+            background: #2635e8;
+
+            border-radius: 10px;
+
+            transform: scaleX(0);
+
+            transition: transform 0.3s ease;
+        }
+
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+
+        /* LOGIN REGISTER */
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .login-btn {
+            text-decoration: none;
+
+            border: 1px solid #2635e8;
+
+            color: #2635e8;
+
+            border-radius: 7px;
+
+            padding: 9px 22px;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #2635e8;
+            color: white;
+        }
+
+
+        .register-btn {
+            text-decoration: none;
+
+            background: #2635e8;
+
+            color: white;
+
+            border-radius: 7px;
+
+            padding: 10px 23px;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #1723c8;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+
+
+        /* =====================================================
+                           HERO SECTION
+        ===================================================== */
+
+        .hero-section {
+
+            padding: 55px 0 30px;
+
+            min-height: 430px;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .hero-content {
+            padding-left: 45px;
+        }
+
+
+        .hero-content h1 {
+
+            font-size: 42px;
+
+            line-height: 1.35;
+
+            font-weight: 500;
+
+            margin-bottom: 18px;
+        }
+
+
+        .hero-content h1 span {
+
+            display: block;
+
+            color: #2635e8;
+
+            font-weight: 700;
+        }
+
+
+        .hero-content p {
+
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            max-width: 520px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* HERO BUTTONS */
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 20px;
+        }
+
+
+        .primary-btn {
+
+            background: #2635e8;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 14px 25px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        .primary-btn:hover {
+
+            background: #1723c8;
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        .secondary-btn {
+
+            background: white;
+
+            color: #111;
+
+            text-decoration: none;
+
+            padding: 14px 27px;
+
+            border: 1px solid #8792ad;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        .secondary-btn:hover {
+
+            border-color: #2635e8;
+
+            color: #2635e8;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* HERO IMAGE */
+
+        .hero-image {
+
+            width: 88%;
+
+            max-width: 500px;
+
+            height: auto;
+        }
+
+
+
+        /* =====================================================
+                           FEATURES
+        ===================================================== */
+
+        .features-section {
+
+            padding: 20px 0 30px;
+        }
+
+
+        .feature-card {
+
+            min-height: 72px;
+
+            border: 1px solid #e6e6e6;
+
+            border-radius: 8px;
+
+            padding: 10px 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            background: white;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+
+            transition: 0.3s;
+        }
+
+
+        .feature-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 7px 20px rgba(0,0,0,0.08);
+        }
+
+
+        .feature-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 9px;
+
+            background: #f1f5ff;
+
+            color: #3971d9;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+        }
+
+
+        .feature-card h5 {
+
+            font-size: 14px;
+
+            margin: 0 0 3px;
+
+            font-weight: 600;
+        }
+
+
+        .feature-card p {
+
+            font-size: 11px;
+
+            line-height: 1.3;
+
+            margin: 0;
+
+            color: #444;
+        }
+
+
+
+        /* =====================================================
+                           ABOUT US
+        ===================================================== */
+
+        .about-section {
+
+            padding: 65px 0;
+
+            background: #f8faff;
+        }
+
+
+        .about-title {
+
+            font-size: 35px;
+
+            font-weight: 600;
+
+            margin-bottom: 15px;
+        }
+
+
+        .about-title span {
+
+            color: #2635e8;
+        }
+
+
+        .about-text {
+
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            max-width: 600px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .about-box {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+
+            border: 1px solid #eeeeee;
+        }
+
+
+        .about-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            background: #eef2ff;
+
+            color: #2635e8;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .about-box h4 {
+
+            font-size: 18px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .about-box p {
+
+            font-size: 12px;
+
+            color: #777;
+
+            line-height: 1.6;
+
+            margin: 0;
+        }
+
+
+
+        /* =====================================================
+                           SERVICES
+        ===================================================== */
+
+        .services-section {
+
+            padding: 55px 0 50px;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 36px;
+
+            font-weight: 500;
+
+            margin-bottom: 5px;
+        }
+
+
+        .section-title p {
+
+            font-size: 12px;
+
+            color: #999;
+        }
+
+
+        .service-card {
+
+            height: 115px;
+
+            border: 1px solid #dfdfdf;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: white;
+
+            transition: 0.3s;
+        }
+
+
+        .service-card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: #2635e8;
+
+            box-shadow: 0 8px 20px rgba(38,53,232,0.10);
+        }
+
+
+        .service-icon {
+
+            color: #1761ce;
+
+            font-size: 27px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .service-card h3 {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            margin: 0;
+
+            text-align: center;
+        }
+
+
+
+        /* =====================================================
+                         HOW IT WORKS
+        ===================================================== */
+
+        .works-section {
+
+            padding: 55px 0;
+
+            background: #f8faff;
+        }
+
+
+        .work-card {
+
+            text-align: center;
+
+            padding: 25px 15px;
+        }
+
+
+        .work-number {
+
+            width: 50px;
+
+            height: 50px;
+
+            margin: auto auto 15px;
+
+            border-radius: 50%;
+
+            background: #2635e8;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+
+            font-weight: 700;
+        }
+
+
+        .work-card h4 {
+
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .work-card p {
+
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+
+        /* =====================================================
+                           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background: #101585;
+
+            color: white;
+        }
+
+
+        footer .container {
+
+            padding-top: 30px;
+
+            padding-bottom: 25px;
+        }
+
+
+        .footer-column h3 {
+
+            font-size: 23px;
+
+            font-weight: 500;
+
+            margin-bottom: 14px;
+        }
+
+
+        .footer-column p {
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            margin: 0;
+
+            color: #f5f5f5;
+        }
+
+
+        .footer-column a {
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.2s;
+        }
+
+
+        .footer-column a:hover {
+
+            color: #8ea0ff;
+        }
+
+
+        .footer-column i {
+
+            width: 18px;
+        }
+
+
+
+        /* =====================================================
+                         COPYRIGHT
+        ===================================================== */
+
+        .copyright {
+
+            background: #080d69;
+
+            padding: 13px 0;
+        }
+
+
+        .copyright p {
+
+            margin: 0;
+
+            font-size: 12px;
+        }
+
+
+        .social-icons {
+
+            display: flex;
+
+            gap: 20px;
+        }
+
+
+        .social-icons a {
+
+            color: white;
+
+            font-size: 19px;
+
+            transition: 0.3s;
+        }
+
+
+        .social-icons a:hover {
+
+            color: #8ea0ff;
+
+            transform: translateY(-2px);
+        }
+
+
+
+        /* =====================================================
+                         RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 991px) {
+
+            .navbar-nav {
+
+                margin-top: 15px;
+
+                gap: 2px;
+            }
+
+
+            .nav-buttons {
+
+                margin-top: 15px;
+            }
+
+
+            .hero-content {
+
+                padding-left: 20px;
+
+                margin-bottom: 35px;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 36px;
+            }
+
+
+            .hero-image {
+
+                width: 75%;
+            }
+        }
+
+
+        @media (max-width: 576px) {
+
+            .logo-text {
+
+                font-size: 17px;
+            }
+
+
+            .hero-content {
+
+                padding-left: 10px;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 30px;
+            }
+
+
+            .hero-buttons {
+
+                flex-direction: column;
+
+                width: 190px;
+            }
+
+
+            .hero-image {
+
+                width: 100%;
+            }
+
+
+            .section-title h2 {
+
+                font-size: 30px;
+            }
+
+
+            .about-title {
+
+                font-size: 29px;
+            }
+
+
+            .copyright .container {
+
+                flex-direction: column;
+
+                gap: 10px;
+
+                text-align: center;
+            }
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-<div class="container">
+<!-- =====================================================
+                         NAVBAR
+===================================================== -->
 
-<a class="navbar-brand fw-bold" href="#">
-DQMS
-</a>
+<nav class="navbar navbar-expand-lg">
 
-<div>
+    <div class="container">
 
-<a href="{% url 'login' %}" class="btn btn-light me-2">
-Login
-</a>
 
-<a href="{% url 'register' %}" class="btn btn-warning">
-Register
-</a>
+        <!-- LOGO -->
 
-</div>
+        <a href="#home"
+           class="logo">
 
-</div>
+            <div class="logo-circle">
+
+                <i class="fa-solid fa-people-arrows"></i>
+
+            </div>
+
+            <span class="logo-text">
+                DQMS
+            </span>
+
+        </a>
+
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="collapse navbar-collapse"
+             id="navbarMenu">
+
+
+            <ul class="navbar-nav mx-auto">
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                       href="#home">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#about">
+
+                        About Us
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#services">
+
+                        Services
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#works">
+
+                        How it works
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#contact">
+
+                        Contact Us
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+
+            <!-- LOGIN / REGISTER -->
+
+            <div class="nav-buttons">
+
+
+                <a href="{% url 'login' %}"
+                   class="login-btn">
+
+                    Login
+
+                </a>
+
+
+                <a href="{% url 'register' %}"
+                   class="register-btn">
+
+                    Register
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 </nav>
 
-<div class="container hero">
 
-<div class="row align-items-center">
 
-<div class="col-md-6">
+<!-- =====================================================
+                         HOME / HERO
+===================================================== -->
 
-<h1 class="text-primary">
-Skip The Queue
-</h1>
+<section class="hero-section"
+         id="home">
 
-<p>
+    <div class="container">
 
-Book your appointment online,
-generate digital tokens,
-track queue status
-and save your valuable time.
+        <div class="row align-items-center">
 
-</p>
 
-<a href="{% url 'register' %}" class="btn btn-primary btn-lg">
+            <!-- LEFT -->
 
-Get Started
+            <div class="col-lg-6 hero-content">
 
-</a>
 
-</div>
+                <h1>
 
-<div class="col-md-6 text-center">
+                    Skip the Line,
 
-<img src="/static/images/hero.png"
-class="img-fluid"
-width="500">
+                    <span>
+                        Save Your Time.
+                    </span>
 
-</div>
+                </h1>
 
-</div>
 
-</div>
+                <p>
+
+                    A Smart and digital way to manage queues
+                    in Hospitals,banks,offices and more.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+
+                    <a href="#"
+                       class="primary-btn">
+
+                        Generate Token
+
+                    </a>
+
+
+                    <a href="#"
+                       class="secondary-btn">
+
+                        Book Appointment
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="col-lg-6 text-center">
+
+
+                <img src="{% static 'users/image/logos.png' %}"
+                     class="hero-image"
+                     alt="Digital Queue Management">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+                         FEATURES
+===================================================== -->
+
+<section class="features-section">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+
+            <!-- DIGITAL TOKEN -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-ticket"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            Digital Token
+                        </h5>
+
+                        <p>
+                            Generate Token<br>
+                            initially
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LIVE QUEUE -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+
+                    <div class="feature-icon">
+
+                        <i class="fa-regular fa-clock"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            Live Queue Status
+                        </h5>
+
+                        <p>
+                            Generate Token<br>
+                            initially
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ALERTS -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+
+                    <div class="feature-icon">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            SMS & Email Alerts
+                        </h5>
+
+                        <p>
+                            Get notified on your<br>
+                            turn
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FAST -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-link"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            Fast & Efficient
+                        </h5>
+
+                        <p>
+                            Reduce waiting Time<br>
+                            & improve
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+                         ABOUT US
+===================================================== -->
+
+<section class="about-section"
+         id="about">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+
+            <!-- LEFT -->
+
+            <div class="col-lg-7">
+
+
+                <h2 class="about-title">
+
+                    About
+                    <span>DQMS</span>
+
+                </h2>
+
+
+                <p class="about-text">
+
+                    Digital Queue Management System is a smart
+                    and modern solution designed to reduce
+                    waiting time and make queue management
+                    simple and efficient.
+
+                </p>
+
+
+                <p class="about-text">
+
+                    Our system allows customers to generate
+                    digital tokens, book appointments and
+                    track their queue status without standing
+                    in long physical queues.
+
+                </p>
+
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="col-lg-5">
+
+
+                <div class="about-box">
+
+
+                    <div class="about-icon">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                    </div>
+
+
+                    <h4>
+                        Smart Queue Management
+                    </h4>
+
+
+                    <p>
+
+                        Manage queues digitally across
+                        hospitals, banks, government offices
+                        and colleges.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+                         SERVICES
+===================================================== -->
+
+<section class="services-section"
+         id="services">
+
+
+    <div class="container">
+
+
+        <div class="section-title">
+
+
+            <h2>
+                Our Services
+            </h2>
+
+
+            <p>
+                We provide Queue management for various sectors
+            </p>
+
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- HOSPITALS -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="service-card">
+
+
+                    <i class="fa-solid fa-hospital service-icon"></i>
+
+
+                    <h3>
+                        Hospitals
+                    </h3>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BANKS -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="service-card">
+
+
+                    <i class="fa-solid fa-building-columns service-icon"></i>
+
+
+                    <h3>
+                        Banks
+                    </h3>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GOVERNMENT -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="service-card">
+
+
+                    <i class="fa-solid fa-building-columns service-icon"></i>
+
+
+                    <h3>
+                        Government Offices
+                    </h3>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COLLEGES -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="service-card">
+
+
+                    <i class="fa-solid fa-graduation-cap service-icon"></i>
+
+
+                    <h3>
+                        Colleges
+                    </h3>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+                       HOW IT WORKS
+===================================================== -->
+
+<section class="works-section"
+         id="works">
+
+
+    <div class="container">
+
+
+        <div class="section-title">
+
+
+            <h2>
+                How It Works
+            </h2>
+
+
+            <p>
+                Simple steps to manage your queue
+            </p>
+
+
+        </div>
+
+
+        <div class="row">
+
+
+            <!-- STEP 1 -->
+
+            <div class="col-lg-4">
+
+                <div class="work-card">
+
+
+                    <div class="work-number">
+                        1
+                    </div>
+
+
+                    <h4>
+                        Generate Token
+                    </h4>
+
+
+                    <p>
+
+                        Select your service and
+                        generate your digital token.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STEP 2 -->
+
+            <div class="col-lg-4">
+
+                <div class="work-card">
+
+
+                    <div class="work-number">
+                        2
+                    </div>
+
+
+                    <h4>
+                        Track Queue
+                    </h4>
+
+
+                    <p>
+
+                        Check your live queue position
+                        and estimated waiting time.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STEP 3 -->
+
+            <div class="col-lg-4">
+
+                <div class="work-card">
+
+
+                    <div class="work-number">
+                        3
+                    </div>
+
+
+                    <h4>
+                        Get Your Turn
+                    </h4>
+
+
+                    <p>
+
+                        Receive notifications when
+                        your turn is approaching.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+                         FOOTER
+===================================================== -->
+
+<footer id="contact">
+
+
+    <div class="container">
+
+
+        <div class="row">
+
+
+            <!-- DQMS -->
+
+            <div class="col-lg-3 col-md-6 footer-column">
+
+
+                <h3>
+                    DQMS
+                </h3>
+
+
+                <p>
+
+                    Digital<br>
+                    Queue<br>
+                    Management<br>
+                    System
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="col-lg-3 col-md-6 footer-column">
+
+
+                <h3>
+                    Quick Links
+                </h3>
+
+
+                <p>
+
+
+                    <a href="#home">
+                        Home
+                    </a>
+
+                    <br>
+
+
+                    <a href="#about">
+                        About Us
+                    </a>
+
+                    <br>
+
+
+                    <a href="#services">
+                        Services
+                    </a>
+
+                    <br>
+
+
+                    <a href="#works">
+                        How It Works
+                    </a>
+
+                    <br>
+
+
+                    <a href="#contact">
+                        Contact Us
+                    </a>
+
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- SERVICES -->
+
+            <div class="col-lg-3 col-md-6 footer-column">
+
+
+                <h3>
+                    Services
+                </h3>
+
+
+                <p>
+
+                    Hospitals,<br>
+                    Banks,<br>
+                    Government Offices,<br>
+                    Colleges
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div class="col-lg-3 col-md-6 footer-column">
+
+
+                <h3>
+                    Contact Info
+                </h3>
+
+
+                <p>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    &nbsp;123, Smart City, India
+
+                </p>
+
+
+                <p>
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    &nbsp;+91 9870143210
+
+                </p>
+
+
+                <p>
+
+                    <i class="fa-regular fa-envelope"></i>
+
+                    &nbsp;info@dqms.com
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+
+
+        <div class="container d-flex
+                    justify-content-between
+                    align-items-center">
+
+
+            <p>
+
+                © 2024 DQMS, All rights reserved
+
+            </p>
+
+
+            <div class="social-icons">
+
+
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+
+
+                <a href="#">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+
+
+                <a href="#">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+
+
+                <a href="#">
+                    <i class="fa-solid fa-basketball"></i>
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
 
 </body>
+
 </html>
