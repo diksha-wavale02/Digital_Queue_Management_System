@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue List</title>
+</head>
+<body>
+    <h2>Queue Management</h2>
+    <a href="{% url 'generate_token' %}">Generate New Token</a>
+
+    <br><br>
+    <table border="1" cellpadding="10">
+    <tr>
+    <th>Token</th>
+    <th>Customer</th>
+    <th>Service</th>
+    <th>Status</th>
+    </tr>
+    {% for queue in data %}
+    <tr>
+
+        <td>{{ queue.token_number }}</td>
+
+        <td>{{ queue.appointment.customer_name }}</td>
+
+        <td>{{ queue.appointment.service.service_name }}</td>
+
+        <td>{{ queue.status }}</td>
+        <td>
+            <a href="{% url 'update_queue' queue.id %}">
+            Update Status
+        </a>
+        </td>
+
+    </tr>
+    {% empty %}
+    <tr>
+    <td colspan="4">No Queue Available</td>
+    </tr>
+
+    {% endfor %}
+
+
+    </table>
+</body>
+</html>

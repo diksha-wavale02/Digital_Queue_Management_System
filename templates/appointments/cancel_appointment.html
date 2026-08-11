@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Appointment</title>
+</head>
+<body>
+    <h2>Cancel Appointment</h2>
+    <p>Are you sure you want to cancel this appointment?</p>
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Customer Name</th>
+            <td>{{ appointment.customer_name }}</td>
+        </tr>
+
+        <tr>
+            <th>Phone</th>
+            <td>{{ appointment.phone }}</td>
+        </tr>
+        <tr>
+            <th>Service</th>
+            <td>{{ appointment.service.service_name }}</td>
+        </tr>
+
+        <tr>
+            <th>Appointment Date</th>
+            <td>{{ appointment.appointment_date }}</td>
+        </tr>
+          <tr>
+            <th>Appointment Time</th>
+            <td>{{ appointment.appointment_time }}</td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>{{ appointment.status }}</td>
+        </tr>
+    </table>
+    <br>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Cancel Appointment</button>
+    </form>
+
+    <br>
+
+    <a href="{% url 'view_appointment' %}">No, Go Back</a>
+
+
+
+
+</body>
+</html>

@@ -1,3 +1,21 @@
 from django.contrib import admin
+from .models import Service
+from .models import ServiceCategory
 
-# Register your models here.
+
+@admin.register(ServiceCategory)
+class ServiceCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'category',
+        'duration',
+    )
+
+    list_filter = (
+        'category',
+    )

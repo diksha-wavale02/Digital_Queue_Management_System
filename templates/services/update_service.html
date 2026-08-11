@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Service</title>
+</head>
+<body>
+    <h2>Update Service</h2>
+    <form method="POST">
+
+
+<label>Service Name</label><br>
+
+<input
+type="text"
+name="service_name"
+value="{{ service.service_name }}"
+required>
+
+<br><br>
+
+<label>Description</label><br>
+
+<textarea
+name="description"
+required>{{ service.description }}</textarea>
+
+<br><br>
+
+<label>Price</label><br>
+<input
+type="number"
+name="price"
+value="{{ service.price }}"
+required>
+
+<br><br>
+
+<label>Duration</label><br>
+<input
+type="number"
+name="duration"
+value="{{ service.duration }}"
+required>
+
+<br><br>
+<button type="submit">
+
+Update Service
+
+</button>
+
+</form>
+
+    
+</body>
+</html>

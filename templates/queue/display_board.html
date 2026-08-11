@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Queue Display</title>
+
+    <meta http-equiv="refresh" content="5">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #1f2937;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+        }
+
+        .header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .label {
+            font-size: 24px;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .current-token {
+            font-size: 90px;
+            font-weight: bold;
+            color: #dc2626;
+            margin: 20px 0;
+        }
+
+        .serving-text {
+            font-size: 22px;
+            color: #555;
+        }
+
+        .next-section {
+            margin-top: 35px;
+        }
+
+        .next-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .tokens {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .token {
+            background: #e5e7eb;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .waiting {
+            padding: 50px;
+            font-size: 30px;
+            color: #777;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>Digital Queue Management System</h1>
+
+        <p>Live Queue Display Board</p>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="main-card">
+
+            {% if current_queue %}
+
+                <div class="label">
+                    NOW SERVING
+                </div>
+
+                <div class="current-token">
+
+                    Q{{ current_queue.token_number|stringformat:"03d" }}
+
+                </div>
+
+                <div class="serving-text">
+
+                    Please proceed to the service counter
+
+                </div>
+
+            {% else %}
+
+                <div class="waiting">
+
+                    No token is currently being served.
+
+                </div>
+
+            {% endif %}
+
+
+            <div class="next-section">
+
+                <h2>Next Tokens</h2>
+
+                {% if next_tokens %}
+
+                    <div class="tokens">
+
+                        {% for queue in next_tokens %}
+
+                            <div class="token">
+
+                                Q{{ queue.token_number|stringformat:"03d" }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p>No customers waiting.</p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+
+            <p>
+                Display automatically refreshes every 5 seconds
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
