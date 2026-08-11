@@ -1,11 +1,11 @@
 from django.db import models
-from services.models import ServiceCategory
+from services.models import Service
 
 
 class Location(models.Model):
 
     category = models.ForeignKey(
-        ServiceCategory,
+        Service,
         on_delete=models.CASCADE,
         related_name="locations"
     )

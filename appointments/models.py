@@ -1,5 +1,5 @@
 from django.db import models
-from services.models import ServiceCategory, Service
+from services.models import Service
 from locations.models import Location
 
 
@@ -10,7 +10,7 @@ class Appointment(models.Model):
     phone_number = models.CharField(max_length=15)
 
     category = models.ForeignKey(
-        ServiceCategory,
+        Service,
         on_delete=models.CASCADE,
         related_name='appointments',
         blank=True,

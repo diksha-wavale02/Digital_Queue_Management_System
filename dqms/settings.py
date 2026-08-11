@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'staff',
     'analytics',
     'tokens',
+    'locations',
 ]
 
 MIDDLEWARE = [
