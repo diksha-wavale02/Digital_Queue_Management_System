@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Services</title>
+</head>
+<body>
+    <h2>Service List</h2>
+    <a href="{% url 'add_service' %}">Add New Service</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Doctor Consultation</th>
+    <th>Lab Test</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Duration</th>
+    <th>Action</th>
+</tr>
+
+
+<tr>
+
+<td>{{ service.id }}</td>
+<td>{{ service.service_name }}</td>
+<td>{{ service.description }}</td>
+<td>{{ service.price }}</td>
+<td>{{ service.duration }}</td>
+
+<td>
+
+
+
+
+
+
+Delete
+
+
+
+</td>
+
+</tr>
+
+
+
+    
+
+    
+</body>
+</html>
