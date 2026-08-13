@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +10,14 @@
 
     <title>Digital Queue Display</title>
 
-    <meta http-equiv="refresh" content="5">
+
+    {% if location_id and service_id %}
+
+        <meta http-equiv="refresh"
+              content="5;url={% url 'display_board' %}?location_id={{ location_id }}&service_id={{ service_id }}">
+
+    {% endif %}
+
 
     <style>
 
@@ -113,17 +119,41 @@
             color: #777;
         }
 
+        .call-button {
+            margin-top: 30px;
+        }
+
+        .call-button a {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        .call-button a:hover {
+            background: #1d4ed8;
+        }
+
     </style>
 
 </head>
 
+
 <body>
+
 
     <div class="header">
 
-        <h1>Digital Queue Management System</h1>
+        <h1>
+            Digital Queue Management System
+        </h1>
 
-        <p>Live Queue Display Board</p>
+        <p>
+            Live Queue Display Board
+        </p>
 
     </div>
 
@@ -131,6 +161,9 @@
     <div class="container">
 
         <div class="main-card">
+
+
+            <!-- CURRENTLY SERVING -->
 
             {% if current_queue %}
 
@@ -161,9 +194,14 @@
             {% endif %}
 
 
+            <!-- NEXT TOKENS -->
+
             <div class="next-section">
 
-                <h2>Next Tokens</h2>
+                <h2>
+                    Next Tokens
+                </h2>
+
 
                 {% if next_tokens %}
 
@@ -183,11 +221,38 @@
 
                 {% else %}
 
-                    <p>No customers waiting.</p>
+                    <p>
+                        No customers waiting.
+                    </p>
+                        
 
                 {% endif %}
-
             </div>
+
+            <div style="margin-top: 30px; text-align: center;">
+
+    <button
+        onclick="history.back()"
+        style="
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        "
+    >
+        ← Back to Appointment Confirmation Page
+    </button>
+
+</div>
+
+        
+
+
+        
+
 
         </div>
 
@@ -200,7 +265,9 @@
 
         </div>
 
+
     </div>
+
 
 </body>
 

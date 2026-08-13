@@ -7,12 +7,13 @@ from .forms import AppointmentForm
 from queue_app.models import Queue
 from services.models import Service
 from locations.models import Location
+from django.db.models import Max
+
 
 
 # =========================================================
 # USER - BOOK APPOINTMENT
 # =========================================================
-
 def book_appointment(request):
 
     if request.method == 'POST':
@@ -24,45 +25,34 @@ def book_appointment(request):
             # Save appointment
             appointment = form.save()
 
-            # -----------------------------------------
-            # FIND SAME LOCATION + SAME SERVICE
-            # -----------------------------------------
-
+            # Same location + same service
             same_queue = Queue.objects.filter(
                 appointment__location=appointment.location,
                 appointment__service=appointment.service
             )
 
-            # -----------------------------------------
-            # GENERATE NEXT TOKEN
-            # -----------------------------------------
+            # Find highest token number
+            max_token = same_queue.aggregate(
+                max_token=Max('token_number')
+            )['max_token']
 
-            last_queue = same_queue.order_by(
-                '-token_number'
-            ).first()
-
-            if last_queue:
-                next_token = last_queue.token_number + 1
-            else:
+            # Generate next token
+            if max_token is None:
                 next_token = 1
+            else:
+                next_token = max_token + 1
 
-            # -----------------------------------------
-            # CREATE QUEUE
-            # -----------------------------------------
-
+            # Create queue
             Queue.objects.create(
                 appointment=appointment,
                 token_number=next_token,
                 status='Waiting'
             )
 
-            # -----------------------------------------
-            # CONFIRMATION PAGE
-            # -----------------------------------------
-
+            # Go to confirmation page
             return redirect(
                 'appointment_confirmation',
-                  appointment_id=appointment.id
+                appointment_id=appointment.id
             )
 
     else:
@@ -76,7 +66,9 @@ def book_appointment(request):
             'form': form
         }
     )
+   
 
+   
 
 # =========================================================
 # USER - APPOINTMENT CONFIRMATION
@@ -313,3 +305,34 @@ def live_queue(request, appointment_id):
             'progress': progress,
         }
     )
+
+
+# =========================================================
+# USER - CANCEL APPOINTMENT
+# =========================================================
+
+def user_cancel_appointment(request, id):
+
+    appointment = get_object_or_404(
+        Appointment,
+        id=id
+    )
+
+    if request.method == 'POST':
+
+        appointment.status = 'Cancelled'
+        appointment.save()
+
+        # Also cancel queue
+        Queue.objects.filter(
+            appointment=appointment
+        ).update(
+            status='Cancelled'
+        )
+
+    return redirect(
+        'appointment_confirmation',
+        appointment_id=appointment.id
+    )
+
+

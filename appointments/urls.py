@@ -53,4 +53,9 @@ urlpatterns = [
     views.get_services_by_category,
     name='get_services_by_category'
 ),
+path(
+    'user-cancel/<int:id>/',
+    views.user_cancel_appointment,
+    name='user_cancel_appointment'
+),
 ]

@@ -21,14 +21,8 @@ class Service(models.Model):
         blank=True
     )
 
-
-
     name = models.CharField(
         max_length=100
-    )
-
-    description = models.TextField(
-        blank=True
     )
 
     duration = models.IntegerField(
